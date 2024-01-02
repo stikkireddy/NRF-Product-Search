@@ -1,0 +1,5 @@
+/* Custom CSS for black buttons */
+button {
+    background-color: rgb(58, 57, 57) !important;
+    color: white !important;
+}

@@ -84,7 +84,6 @@ def score_model(model_input):
         raise Exception(f'Request failed with status {response.status_code}, {response.text}')
     return response.json()['predictions']
 
-# Custom CSS
 def local_css(file_name):
     with open(file_name, "r") as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -129,7 +128,7 @@ if search_button:
 
 # Check if a search has been performed (search input is not empty or results are available)
 if search_input or (st.session_state.get('results') is not None):
-    # Display results and hidden expanders for smaller plots
+    
 # Display results and hidden expanders for smaller plots
     for i in range(3):
         with st.expander(f"Item {i+1}", expanded=True):
@@ -146,20 +145,11 @@ if search_input or (st.session_state.get('results') is not None):
 
             with col_desc:
                 if st.session_state['results'] is not None: 
-                    # st.write(st.session_state['results']['images'][i])
-                    # st.write("**Product Details**")
-                    # keys = list(st.session_state['lookup_dict'][st.session_state['results']['images'][i]].keys())[:-1]
-                    # for key in keys:
-                    #     st.text(f"{key}: {st.session_state['lookup_dict'][st.session_state['results']['images'][i]][key]}")
+
 
                     # Retrieve product details
                     product_details = st.session_state['lookup_dict'][st.session_state['results']['images'][i]]
 
-                    # # Display formatted product details
-                    # st.markdown(f"**Product Title ({product_details['ProductId']}):**")
-                    # st.markdown(f"**Type:** {product_details['ProductType']} \t **Color:** {product_details['Colour']}")
-                    # st.markdown(f"**Category:** {product_details['Category']} \t **Gender:** {product_details['Gender']}")
-                    # st.markdown(f"**Subcategory:** {product_details['SubCategory']} \t **Usage:** {product_details['Usage']}")
                     # Display formatted product details in two columns
                     st.markdown(f"**Product Title ({product_details['ProductId']}):**")
                     
@@ -172,15 +162,10 @@ if search_input or (st.session_state.get('results') is not None):
                         st.text(f"Color: {product_details['Colour']}")
                         st.text(f"Gender: {product_details['Gender']}")
                         st.text(f"Usage: {product_details['Usage']}")
-
                 else:
                     st.write("Product Details")
 
-    # Displa# Forecast Information
             # Forecast Information
-            # Plotting Units Sold and On Hand Combined
-            # Plotting Units Sold and On Hand Combined
-            # Plotting Units Sold and On Hand Combined
             if st.session_state['results'] is not None:
                 prodid = st.session_state['results']['images'][i].split(".")[0]
                 df2 = prod_df[prod_df["ProductId"]==int(prodid)]
@@ -207,9 +192,7 @@ if search_input or (st.session_state.get('results') is not None):
                     #fig.add_trace(go.Scatter(x=[event['Week']], y=[event['units_sold']], mode='markers', marker=dict(color='red', size=10), showlegend=False))
                     fig.add_trace(go.Scatter(x=[event['Week']], y=[event['units_onhand']], mode='markers', marker=dict(color='red', size=10), showlegend=False))
 
-                # Update layout
                 fig.update_layout(title=f'Weekly Data Trends for Product {prodid}', xaxis_title='Week', yaxis_title='Values')
-
                 # Display Plotly figure in Streamlit
                 st.plotly_chart(fig, use_container_width=False)
             else:

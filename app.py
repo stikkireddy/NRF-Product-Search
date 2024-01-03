@@ -37,8 +37,6 @@ st.markdown(
 )
 
 
-
-os.environ['DATABRICKS_TOKEN'] = '<your_token>'
 lookup_dict = pd.read_csv('fashion.csv').set_index('Image').to_dict(orient='index')
 prod_df= pd.read_csv("prod_stats.csv")
 

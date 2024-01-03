@@ -194,6 +194,6 @@ if search_input or (st.session_state.get('results') is not None):
 
                 fig.update_layout(title=f'Weekly Data Trends for Product {prodid}', xaxis_title='Week', yaxis_title='Values')
                 # Display Plotly figure in Streamlit
-                st.plotly_chart(fig, use_container_width=False)
+                st.plotly_chart(fig, use_container_width=True)
             else:
                 st.write("No forecast data available.")
